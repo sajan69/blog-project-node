@@ -52,7 +52,8 @@ exports.getPostById = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id)
     .populate('user', 'name')
-    .populate('category', 'name');
+    .populate('category', 'name')
+    .populate('comments.user');
 
     if (!post) {
       return res.status(404).json({ msg: 'Post not found' });
@@ -62,6 +63,8 @@ exports.getPostById = async (req, res) => {
       category: post.category,
       _id: { $ne: post.id }
     })
+
+
     res.json({ post, relatedPosts });
   } catch (err) {
     console.error(err.message);

@@ -9,7 +9,7 @@ require('dotenv').config();
 const app = express();
 // app.js or server.js (Backend entry point)
 const cors = require('cors');
-app.use(cors({ origin: 'http://localhost:3000' })); // Adjust the origin as necessary
+app.use(cors()); // Adjust the origin as necessary
 
 
 // Connect to MongoDB
